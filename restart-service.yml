@@ -2,9 +2,11 @@
 - name: Restart service
   hosts: all
   become: true
-
+  vars:
+    service: "{{ service }}"
+  
   tasks:
   - name: Restart service, in all cases
     ansible.builtin.service:
-      name: httpd
+      name: {{ service }}
       state: restarted

@@ -1,7 +1,6 @@
 ---
 - name: Reboot servers
   hosts: all
-  remote_user: root
 
   tasks:
   - name: Reboot a slow machine that might have lots of updates to apply

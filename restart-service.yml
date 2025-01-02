@@ -6,7 +6,7 @@
     service: "{{ service }}"
   
   tasks:
-  - name: Restart service, in all cases
+  - name: Restart service "{{ service }}", in all cases
     ansible.builtin.service:
       name: "{{ service }}"
       state: restarted

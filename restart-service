@@ -1,0 +1,10 @@
+---
+- name: Restart service
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Restart service, in all cases
+    ansible.builtin.service:
+      name: httpd
+      state: restarted

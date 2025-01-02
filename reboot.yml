@@ -1,6 +1,8 @@
 ---
 - name: Reboot servers
   hosts: all
+  become: true
+  become_user: root
 
   tasks:
   - name: Reboot a slow machine that might have lots of updates to apply

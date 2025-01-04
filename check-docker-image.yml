@@ -8,7 +8,7 @@
     mqtt_topic: "{{  mqtt_topic }}" 
   tasks:
     - name: Get local Docker image information
-      docker_image_facts:
+      community.docker.docker_image_info:
         name: "{{ docker_image_name }}"
       register: local_image_info
 

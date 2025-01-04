@@ -1,6 +1,6 @@
 ---
 - name: Check if a new Docker image is available and publish to MQTT
-  hosts: localhost
+  hosts: all
   become: true
   vars:
     docker_image_name: "{{ docker_image_name }}"

@@ -1,0 +1,39 @@
+---
+- name: Check if a new Docker image is available and publish to MQTT
+  hosts: localhost
+  vars:
+    docker_image_name: "{{ docker_image_name }}"
+    mqtt_host: "{{ mqtt_host }}" 
+    mqtt_port: "{{ mqtt_port }}"            
+    mqtt_topic: "{{  mqtt_topic }}" 
+  tasks:
+    - name: Get local Docker image information
+      docker_image_facts:
+        name: "{{ docker_image_name }}"
+      register: local_image_info
+
+    - name: Pull the latest Docker image
+      docker_image:
+        name: "{{ docker_image_name }}"
+        source: pull
+      register: pulled_image_info
+
+    - name: Check if a new image was pulled
+      set_fact:
+        new_image_available: "{{ pulled_image_info.changed }}"
+
+    - name: Publish MQTT message if new image is available
+      mqtt:
+        host: "{{ mqtt_host }}"
+        port: "{{ mqtt_port }}"
+        topic: "{{ mqtt_topic }}"
+        payload: "New Docker image for {{ docker_image_name }} is available and pulled."
+      when: new_image_available
+
+    - name: Publish MQTT message if no new image is available
+      mqtt:
+        host: "{{ mqtt_host }}"
+        port: "{{ mqtt_port }}"
+        topic: "{{ mqtt_topic }}"
+        payload: "No new Docker image for {{ docker_image_name }}."
+      when: not new_image_available

@@ -1,0 +1,5 @@
+---
+collections:
+  - name: community.docker
+    version: "latest"
+  - name: eclipse.mosquitto

@@ -8,15 +8,15 @@
     mqtt_port: "{{ mqtt_port }}"            
     mqtt_topic: "{{  mqtt_topic }}" 
   tasks:
-    - name: Get local Docker image information
-      podman_image_info:
-        name: "{{ docker_image_name }}"
+      - name: Get local Podman image information
+      containers.podman.podman_image_info:
+        name: "{{ podman_image_name }}"
       register: local_image_info
 
-    - name: Pull the latest Docker image
-      podman_image:
-        name: "{{ docker_image_name }}"
-        source: pull
+    - name: Pull the latest Podman image
+      containers.podman.podman_image:
+        name: "{{ podman_image_name }}"
+        state: present
       register: pulled_image_info
 
     - name: Check if a new image was pulled

@@ -8,12 +8,12 @@
     mqtt_topic: "{{  mqtt_topic }}" 
   tasks:
     - name: Get local Docker image information
-      community.docker.docker_image_info:
+      podman_image_info:
         name: "{{ docker_image_name }}"
       register: local_image_info
 
     - name: Pull the latest Docker image
-      docker_image:
+      podman_image:
         name: "{{ docker_image_name }}"
         source: pull
       register: pulled_image_info

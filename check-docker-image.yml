@@ -9,8 +9,8 @@
     mqtt_topic: "{{  mqtt_topic }}" 
   tasks:
       - name: Get local Podman image information
-      containers.podman.podman_image_info:
-        name: "{{ podman_image_name }}"
+        containers.podman.podman_image_info:
+          name: "{{ podman_image_name }}"
       register: local_image_info
 
     - name: Pull the latest Podman image

@@ -27,6 +27,8 @@
         host: "{{ mqtt_host }}"
         port: "{{ mqtt_port }}"
         topic: "{{ mqtt_topic }}"
+        username: "{{ mqtt_username }}"
+        password: "{{ mqtt_password }}"
         payload: "New Docker image for {{ docker_image_name }} is available and pulled."
       when: new_image_available
 
@@ -35,5 +37,7 @@
         host: "{{ mqtt_host }}"
         port: "{{ mqtt_port }}"
         topic: "{{ mqtt_topic }}"
+        username: "{{ mqtt_username }}"
+        password: "{{ mqtt_password }}"
         payload: "No new Docker image for {{ docker_image_name }}."
       when: not new_image_available

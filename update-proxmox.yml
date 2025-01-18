@@ -1,0 +1,19 @@
+---
+- name: Move VM in Proxmox cluster
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Move VM from one node to another
+      community.general.proxmox:
+        api_user: "{{ proxmox_user }}"  # Proxmox user (e.g., root@pam)
+        api_password: "{{ proxmox_password }}"  # Proxmox password (e.g., set as an Ansible variable or use Ansible Vault)
+        api_host: "{{ proxmox_host }}"  # Proxmox cluster host (e.g., 192.168.1.100)
+        vmid: 108  # The VM ID to move
+        node: "node2"  # Source node
+        target_node: "node1"  # Target node to move the VM to
+        state: "migrating"  # Set state to migrating
+      register: result
+
+    - name: Print result of the migration
+      debug:
+        var: result

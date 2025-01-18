@@ -1,1 +1,6 @@
-
+--
+- name: Notification ntfy
+  ansible.builtin.uri:
+    url: https://ntfy.cailyer.net/ansible
+    method: POST
+    body: {{ result }}

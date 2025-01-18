@@ -6,8 +6,18 @@
     apt:
       update_cache: yes
       cache_valid_time: 3600
+      
   - name: Upgrade all installed packages
     apt:
       upgrade: dist
       force_apt_get: yes
       autoremove: yes
+      
+  - name: Check if reboot required
+    stat:
+      path: /var/run/reboot-required
+    register: reboot_required_file
+  
+  - name: Reboot if required
+    reboot:
+    when: reboot_required_file.stat.exists == true

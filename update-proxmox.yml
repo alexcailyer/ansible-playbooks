@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: no
   tasks:
-    - name: Install bottle python package
+    - name: Install prerequisite proxmoxer python package
       ansible.builtin.pip:
         name: proxmoxer
         
@@ -12,7 +12,7 @@
         api_user: "{{ proxmox_user }}"
         api_password: "{{ proxmox_password }}"
         api_host: "{{ proxmox_host }}"
-        name: 108
+        vmid: 108
         node: pve1
         migrate: true
       register: result

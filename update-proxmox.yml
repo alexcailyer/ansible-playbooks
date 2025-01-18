@@ -3,6 +3,10 @@
   hosts: localhost
   gather_facts: no
   tasks:
+    - name: Install bottle python package
+      ansible.builtin.pip:
+        name: proxmoxer
+        
     - name: Move VM from one node to another
       community.general.proxmox_kvm:
         api_user: "{{ proxmox_user }}"

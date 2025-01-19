@@ -6,4 +6,4 @@
     ansible.builtin.uri:
       url: https://ntfy.cailyer.net/ansible
       method: POST
-      body: {{ result }}
+      body: "{{ result }}"

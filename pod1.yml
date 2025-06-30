@@ -1,4 +1,5 @@
-- hosts: 10.0.90.56
+---
+- hosts: all
   become: yes
 
   tasks:

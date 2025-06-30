@@ -1,0 +1,20 @@
+- hosts: 10.0.90.56
+  become: yes
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Podman
+      apt:
+        name: podman
+        state: present
+
+    - name: Enable and start podman socket
+      systemd:
+        name: podman.socket
+        enabled: yes
+        state: started
+
+    # Ajoute ici tes tasks pour config, déploiements, etc.
